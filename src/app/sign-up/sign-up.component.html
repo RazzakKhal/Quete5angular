@@ -1,0 +1,30 @@
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+  <input type="email" name="email" placeholder="Entre ton mail" [(ngModel)]="user.email" required email #mailInput ="ngModel"> <br>
+
+  <div *ngIf="myForm.submitted">
+  <p *ngIf="mailInput.errors?.['required']">l'email est requis</p>
+  <p *ngIf="mailInput.errors?.['email']">Le format d'un email n'est pas respecté</p>
+</div>
+
+  <input type="text" name="firstName" placeholder="Entre ton prénom" [(ngModel)]="user.firstName" required  minlength="3" maxlength="15" #firstNameInput="ngModel"> <br>
+<div *ngIf="myForm.submitted">
+  <p *ngIf="firstNameInput.errors?.['required']"> le prénom est requis</p>
+  <p *ngIf="firstNameInput.errors?.['minlength']">la longueur minimal est de 3 caractères</p>
+  <p *ngIf="firstNameInput.errors?.['maxlength']">la longueur maximal est de 15 caractères</p>
+</div>
+
+  <input type="text" name="lastName" placeholder="Entre ton Nom" [(ngModel)]="user.lastName" required  minlength="3" maxlength="15" #lastNameInput="ngModel"><br>
+  <div *ngIf="myForm.submitted">
+    <p *ngIf="lastNameInput.errors?.['required']"> le nom est requis</p>
+    <p *ngIf="lastNameInput.errors?.['minlength']">la longueur minimal est de 3 caractères</p>
+    <p *ngIf="lastNameInput.errors?.['maxlength']">la longueur maximal est de 15 caractères</p>
+  </div>
+
+  <input type="password" name="password" placeholder="Entre ton mot de passe" [(ngModel)]="user.password" required #passwordInput="ngModel"><br>
+<div *ngIf="myForm.submitted">
+  <p *ngIf="passwordInput.errors?.['required']">Le mot de passe est requis</p>
+</div>
+
+  <button type="submit">Soumettre</button>
+
+</form>
